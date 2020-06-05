@@ -31,7 +31,7 @@ def f(x):
 
 #plot of the functions and the nodes
 #f = red, p_N = green, nodes = blue
-for N in range(80,81,10):
+for N in range(55,71,5):
     h = abs(b-a)/N      #distance between each points
     x_values = [3*(1-np.cos((j*np.pi)/N))/2 for j in range(N+1)]  #chebysev points 
  #   x_values = [a+j*h for j in range(N+1)]        #equidistant points
@@ -40,8 +40,9 @@ for N in range(80,81,10):
     y1 = lagrange(x,x_values,y_values)                  #x,y1 plots p_N
     y2 = f(x)                                           #x,y2 plots f
     plt.figure()
+    plt.title(f"N = {N:}")
     plt.plot(x_values,y_values,"ob",x,y1,"-g",x,y2,"-r")
     plt.axhline(c = 'black', lw = 0.7)   #x-axis
     plt.axvline(c = 'black', lw = 0.7)   #y-axis
     plt.axis([-0,3,-20,20])   #limitation of the axis
-#    plt.savefig(f"plot_{N:}.png")
+    plt.savefig(f"plot_{N:}.png")

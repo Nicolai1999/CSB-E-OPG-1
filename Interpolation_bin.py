@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from math import sin
 import matplotlib.pyplot as plt
 
@@ -22,10 +21,11 @@ def lagrange(x, x_values, y_values):
     
     return p
 
-# Parameters for the experiment
+# Parameters for the experiment, interval = [a,b]
 a = 0
 b = 3
 
+#function to be evaluated
 def f(x):
     return x**2-sin(10*x)
 
@@ -34,13 +34,13 @@ def equi_bound(h, N):
     M = 10**(N+1)
     return 0.25*h**(N+1)*M
 
-# Print the results
+# Print the error bound vs the actual error
 print('-'*34)
 print('      Lagrange interpolation ')
 print('-'*34)
 print('  N     Error bound       Error')
 print('-'*34)
-for N in range(1,60,1):
+for N in range(45,51,1):
 #for N in range(1,10):
     
     # Parameters for Lagrange interpolation
@@ -59,9 +59,9 @@ for N in range(1,60,1):
     
     # Calculate the error                                                                                         
     from operator import sub
-    temp1 = list(map(sub, y_test, approx))
-    temp2 = list(map(abs, temp1))
-    error = max(temp2)
+    temp1 = list(map(sub, y_test, approx))   #list of f(x)-p_N(x) for several x in the interval
+    temp2 = list(map(abs, temp1))   #absolute value of temp1
+    error = max(temp2)  #maximum value of temp2
     
     # Print a table
     print('{:3d}  {:14.5E}  {:13.5E}'.format(N, \
